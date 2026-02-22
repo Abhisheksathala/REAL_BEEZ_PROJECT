@@ -158,57 +158,73 @@ const DashboardMainpage = () => {
     <>
       <div className="bg-gray-50 min-h-screen flex flex-col font-sans py-2">
         {/* Desktop Header */}
-        <div className="hidden sm:flex flex-col text-sm w-full z-10 bg-white shadow text-center">
-          {/* Desktop Tabs */}
-          <div className="w-full px-1 mx-auto">
-            <div className="flex flex-row gap-5 bg-white rounded-t-md relative overflow-scroll scroll-x-auto sm:overflow-hidden">
-              <span
-                className="absolute bottom-0 h-full bg-indigo-900 rounded-t-md transition-all duration-600 ease-in-out z-0"
-                style={{
-                  width: `${sliderStyle.width}px`,
-                  left: `${sliderStyle.left}px`,
-                  pointerEvents: "none",
-                }}
-              />
+       <div className="hidden sm:block w-full bg-white border-b border-gray-200">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Desktop Tabs - Horizontal Layout */}
+    <div className="relative flex items-center">
+      {/* Sliding indicator */}
+      <span
+        className="absolute bottom-0 h-0.5 bg-indigo-600 transition-all duration-300 ease-in-out"
+        style={{
+          width: `${sliderStyle.width}px`,
+          left: `${sliderStyle.left}px`,
+          pointerEvents: "none",
+        }}
+      />
 
-              {jobCategories.map((category, index) => (
-                <button
-                  key={category.name}
-                  ref={(el) => (tabRefs.current[index] = el)} // ← add this line
-                  onClick={() => setActiveTab(category.name)}
-                  className={`py-1 px-3 rounded-t-md relative font-medium z-10 transition-colors duration-300 ease-in-out ${
-                    activeTab === category.name ? "text-white" : "text-gray-700"
-                  }`}
-                >
-                  <span className="flex flex-wrap items-center justify-center gap-1">
-                    <span>
-                      <div className="flex flex-wrap items-center gap-2 text-left">
-                        <div className="flex flex-col relative">
-                          <img
-                            alt={category.name}
-                            className="h-12 w-auto object-contain mx-auto"
-                            src={category.icon}
-                          />
-                          <span className="text-sm font-semibold">
-                            {category.name}
-                          </span>
-                          <span className="text-xs text-gray-500">
-                            {category.description}
-                          </span>
-                          {category.count > 0 && (
-                            <span className="absolute -top-2 -right-2 bg-blue-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                              {category.count}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    </span>
-                  </span>
-                </button>
-              ))}
+      {/* Tabs container */}
+      <div className="flex flex-row gap-2 overflow-x-auto scrollbar-hide py-2">
+        {jobCategories.map((category, index) => (
+          <button
+            key={category.name}
+            ref={(el) => (tabRefs.current[index] = el)}
+            onClick={() => setActiveTab(category.name)}
+            className={`
+              group relative flex items-center gap-2 px-4 py-2 rounded-lg flex-shrink-0
+              transition-all duration-200 ease-in-out
+              ${activeTab === category.name 
+                ? 'bg-indigo-50 text-indigo-600' 
+                : 'text-gray-600 hover:bg-gray-50'
+              }
+            `}
+          >
+            {/* Icon */}
+            <div className={`
+              p-1.5 rounded-md transition-colors duration-200
+              ${activeTab === category.name 
+                ? 'bg-indigo-100' 
+                : 'bg-gray-100 group-hover:bg-gray-200'
+              }
+            `}>
+              <img
+                alt={category.name}
+                className="h-5 w-5 object-contain"
+                src={category.icon}
+              />
             </div>
-          </div>
-        </div>
+            
+            {/* Text */}
+            <div className="text-left">
+              <div className="text-sm font-medium">
+                {category.name}
+              </div>
+              <div className="text-xs text-gray-400">
+                {category.description}
+              </div>
+            </div>
+
+            {/* Optional count badge */}
+            {category.count > 0 && (
+              <span className="ml-1 bg-indigo-600 text-white text-xs font-medium rounded-full px-2 py-0.5">
+                {category.count}
+              </span>
+            )}
+          </button>
+        ))}
+      </div>
+    </div>
+  </div>
+</div>
 
         {/* Category Header */}
         <div className="bg-white border-b border-gray-200 p-4">

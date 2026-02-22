@@ -6,10 +6,12 @@ import DashboardMainpage from "../components/DashboardMainpage";
 
 const Dashboard = () => {
   return (
-    <div className="mt-[4.8rem] ">
-      <div className="flex">
+    <div className="mt-[4.8rem]">
+      <div className="flex min-h-screen">
         <SidebarNavigation />
-        <DashboardMainpage />
+        <div className="flex-1">
+          <DashboardMainpage />
+        </div>
       </div>
     </div>
   );
