@@ -11,8 +11,6 @@ const Dashboard = () => {
         <SidebarNavigation />
         <DashboardMainpage />
       </div>
-      <CreateJobModal />
-      <CreateJobModalNormal />
     </div>
   );
 };
