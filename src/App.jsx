@@ -12,7 +12,7 @@ const App = () => {
       <div className="cal-[100vw-3rem] mx-auto">
       <Routes>
         <Route path="/" element={<Home/>} />
-        <Route path="/Dashboard" element={<Dashboard/>} />
+        <Route path="/dashboard" element={<Dashboard/>} />
       </Routes>
       </div>
       <Footer />
