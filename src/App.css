@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 40s linear infinite;
+}
+
+/* Optional: Pause animation on hover */
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* Add this to your global CSS file */
+.modal-no-scroll {
+  overflow: hidden !important;
+}
+
+/* Or if you want to target specifically */
+.CreateJobModal_body::-webkit-scrollbar,
+.CreateJobModalNormal_body::-webkit-scrollbar {
+  display: none;
+}
+
+.CreateJobModal_body,
+.CreateJobModalNormal_body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-250px * 6));
+  }
+}
+
+.animate-scroll {
+  animation: scroll 20s linear infinite;
+}
+
+.animate-scroll:hover {
+  animation-play-state: paused;
+}
